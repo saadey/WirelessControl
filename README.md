@@ -1,0 +1,3 @@
+# WirelessControl
+This is my android app, connected with firebase. on the other hand I have python program which will connect with firebase and recieve commands from this app
+This project is about connecting PC with android through Firebase Realtime database. This is an Android app built with Kotlin, the other part of the project is built on Python for PC. By using firebase I am going to connect both of them and control the laptop wirelessly. Note: Python program uses 'Keyboard' library which will be frequently detecting changes in the command node on firebase controlled by this android app, after detection it will convert the string into command and act on it.
