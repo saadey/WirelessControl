@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#F18181"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -61,12 +62,27 @@
                 android:inputType="textPersonName"
                 android:padding="12dp" />
 
-            <Button
-                android:id="@+id/submit"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Submit" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:text="Submit" />
+
+                <Button
+                    android:id="@+id/write"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:text="Write" />
+            </LinearLayout>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -85,20 +101,21 @@
                         android:text="caps" />
 
                     <Button
-                        android:id="@+id/numLock"
+                        android:id="@+id/backspace"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:text="num" />
+                        android:text="Back" />
 
                     <Button
-                        android:id="@+id/scroll"
+                        android:id="@+id/disconnect"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:text="scrl" />
+                        android:backgroundTint="#C4EF0B0B"
+                        android:text="OFF" />
                 </TableRow>
 
                 <TableRow

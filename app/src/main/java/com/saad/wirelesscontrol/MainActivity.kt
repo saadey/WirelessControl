@@ -2,16 +2,16 @@ package com.saad.wirelesscontrol
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
     lateinit var command: EditText
+    lateinit var write: Button
     lateinit var submit: Button
     lateinit var up: Button
     lateinit var down: Button
@@ -22,9 +22,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var shift: Button
     lateinit var enter: Button
     lateinit var capslock: Button
-    lateinit var numlock: Button
-    lateinit var scllock: Button
+    lateinit var back: Button
+    lateinit var disconnect: Button
     lateinit var delete: Button
+    var toggle = true
+    lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,17 +34,48 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         initViews()
-        val database = FirebaseDatabase.getInstance().reference
+        database = FirebaseDatabase.getInstance().reference.child("KeyEvent")
+            .child("Key0")
 
-        submit.setOnClickListener(View.OnClickListener {
+        submit.setOnClickListener {
             val cmd = command.text.toString()
-            database.child("KeyEvent")
-                .child("Key0").setValue(cmd)
+            database.setValue(cmd)
                 .addOnSuccessListener {
                     Toast.makeText(baseContext, "$cmd sent...", Toast.LENGTH_SHORT).show()
                 }
-        })
+        }
+        write.setOnClickListener {
+            val cmd = command.text.toString()
+            database.setValue(cmd)
+                .addOnSuccessListener {
+                    Toast.makeText(baseContext, "$cmd sent...", Toast.LENGTH_SHORT).show()
+                }
+        }
+        disconnect.setOnClickListener(){submitKey("exit")}
+        up.setOnClickListener(){submitKey("up")}
+        down.setOnClickListener(){submitKey("down")}
+        left.setOnClickListener(){submitKey("left")}
+        right.setOnClickListener(){submitKey("right")}
+        capslock.setOnClickListener(){submitKey("capslock")}
+        back.setOnClickListener(){submitKey("back")}
+        enter.setOnClickListener(){submitKey("enter")}
+        delete.setOnClickListener(){submitKey("delete")}
 
+    }
+
+    private fun submitKey(cmd: String) {
+        database.setValue(toggleCommand(cmd))
+            .addOnSuccessListener {
+                Toast.makeText(baseContext, "${cmd.uppercase()} sent...", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun toggleCommand(cmd: String): String {
+        toggle = !toggle
+        return if(toggle)
+            cmd.uppercase()
+        else
+            cmd.lowercase()
     }
 
     private fun initViews() {
@@ -57,10 +90,10 @@ class MainActivity : AppCompatActivity() {
         shift = findViewById(R.id.shift)
         enter = findViewById(R.id.enter)
         capslock = findViewById(R.id.capslock)
-        numlock = findViewById(R.id.numLock)
-        scllock = findViewById(R.id.scroll)
+        back = findViewById(R.id.backspace)
+        disconnect= findViewById(R.id.disconnect)
         delete = findViewById(R.id.delete)
-
+        write = findViewById(R.id.write)
 
     }
 }
