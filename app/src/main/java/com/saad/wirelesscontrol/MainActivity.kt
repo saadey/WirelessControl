@@ -25,8 +25,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var back: Button
     lateinit var disconnect: Button
     lateinit var delete: Button
-    var toggle = true
     lateinit var database: DatabaseReference
+    lateinit var writeLineDb: DatabaseReference
+    var toggle = true
+    var cltToggle = false
+    var altToggle = false
+    var shiftToggle = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,37 +40,53 @@ class MainActivity : AppCompatActivity() {
         initViews()
         database = FirebaseDatabase.getInstance().reference.child("KeyEvent")
             .child("Key0")
+        writeLineDb = FirebaseDatabase.getInstance().reference.child("KeyEvent")
+            .child("text")
 
         submit.setOnClickListener {
-            val cmd = command.text.toString()
+            var toggles = getToggles()
+            val cmd = toggles + command.text.toString()
             database.setValue(cmd)
                 .addOnSuccessListener {
                     Toast.makeText(baseContext, "$cmd sent...", Toast.LENGTH_SHORT).show()
                 }
         }
         write.setOnClickListener {
-            val cmd = command.text.toString()
-            database.setValue(cmd)
+            val text = command.text.toString()
+            writeLineDb.setValue(text)
                 .addOnSuccessListener {
-                    Toast.makeText(baseContext, "$cmd sent...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "Text sent...", Toast.LENGTH_SHORT).show()
                 }
         }
-        disconnect.setOnClickListener(){submitKey("exit")}
-        up.setOnClickListener(){submitKey("up")}
-        down.setOnClickListener(){submitKey("down")}
-        left.setOnClickListener(){submitKey("left")}
-        right.setOnClickListener(){submitKey("right")}
-        capslock.setOnClickListener(){submitKey("capslock")}
-        back.setOnClickListener(){submitKey("back")}
-        enter.setOnClickListener(){submitKey("enter")}
-        delete.setOnClickListener(){submitKey("delete")}
+
+        disconnect.setOnClickListener{submitKey("exit")}
+        up.setOnClickListener{submitKey("up")}
+        down.setOnClickListener{submitKey("down")}
+        left.setOnClickListener{submitKey("left")}
+        right.setOnClickListener{submitKey("right")}
+        capslock.setOnClickListener{submitKey("capslock")}
+        back.setOnClickListener{submitKey("back")}
+        enter.setOnClickListener{submitKey("enter")}
+        delete.setOnClickListener{submitKey("delete")}
 
     }
 
+    private fun getToggles(): String {
+        var toggles = ""
+        if(cltToggle)
+            toggles += "clt+"
+        if(altToggle)
+            toggles += "alt+"
+        if(shiftToggle)
+            toggles += "shift+"
+        return toggles
+    }
+
     private fun submitKey(cmd: String) {
-        database.setValue(toggleCommand(cmd))
+        var newCommand = getToggles()+cmd
+        database.setValue(toggleCommand(newCommand))
             .addOnSuccessListener {
-                Toast.makeText(baseContext, "${cmd.uppercase()} sent...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "${newCommand.uppercase()} sent...", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -94,6 +114,29 @@ class MainActivity : AppCompatActivity() {
         disconnect= findViewById(R.id.disconnect)
         delete = findViewById(R.id.delete)
         write = findViewById(R.id.write)
-
+        clt.setOnClickListener {
+            if(cltToggle){
+                it.setBackgroundColor(resources.getColor(R.color.not_pressed))
+            }
+            else
+                it.setBackgroundColor(resources.getColor(R.color.pressed))
+            cltToggle = !cltToggle
+        }
+        alt.setOnClickListener {
+            if(altToggle){
+                it.setBackgroundColor(resources.getColor(R.color.not_pressed))
+            }
+            else
+                it.setBackgroundColor(resources.getColor(R.color.pressed))
+            altToggle = !altToggle
+        }
+        shift.setOnClickListener {
+            if(shiftToggle){
+                it.setBackgroundColor(resources.getColor(R.color.not_pressed))
+            }
+            else
+                it.setBackgroundColor(resources.getColor(R.color.pressed))
+            shiftToggle = !shiftToggle
+        }
     }
 }

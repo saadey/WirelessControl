@@ -3,6 +3,8 @@
     <color name="purple_200">#90CAF9</color>
     <color name="purple_500">#2196F3</color>
     <color name="purple_700">#1976D2</color>
+    <color name="not_pressed">#2196F3</color>
+    <color name="pressed">#0D47A1</color>
     <color name="teal_200">#0288D1</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
