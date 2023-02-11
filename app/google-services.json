@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "707741656148",
+    "firebase_url": "https://arpan-project-3a7ef-default-rtdb.firebaseio.com",
+    "project_id": "arpan-project-3a7ef",
+    "storage_bucket": "arpan-project-3a7ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707741656148:android:ee813673af24d40c2779c1",
+        "android_client_info": {
+          "package_name": "com.fyp.aitesting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707741656148-3k7gr116678arde3em45vi1pg5p8vfso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRrR8SZVeV69uBL3A4gBbyhHrrZhjR83g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707741656148-3k7gr116678arde3em45vi1pg5p8vfso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707741656148:android:c8b9edad981d42dd2779c1",
+        "android_client_info": {
+          "package_name": "com.fyp.forclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707741656148-3k7gr116678arde3em45vi1pg5p8vfso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRrR8SZVeV69uBL3A4gBbyhHrrZhjR83g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707741656148-3k7gr116678arde3em45vi1pg5p8vfso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707741656148:android:13b9475c59d63ec72779c1",
+        "android_client_info": {
+          "package_name": "com.saad.wirelesscontrol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707741656148-3k7gr116678arde3em45vi1pg5p8vfso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRrR8SZVeV69uBL3A4gBbyhHrrZhjR83g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707741656148-3k7gr116678arde3em45vi1pg5p8vfso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
